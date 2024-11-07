@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #eedbc7, #e3c4a2);
+}
+
+/* Importing local font */
+@font-face {
+  font-family: "DoppioOne";
+  src: url("./assets/fonts/DoppioOne-Regular.ttf") format("tff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSerifDisplay";
+  src: url("./assets/fonts/DMSerifDisplay-Regular.ttf") format("tff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EduNSWACTFoundation";
+  src: url("./assets/fonts/EduNSWACTFoundation-Regular.ttf") format("tff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "DoppioOne";
+}
+
+.font-dm-serif {
+  font-family: "DMSerifDisplay";
+}
+
+.font-edu {
+  font-family: "EduNSWACTFoundation";
+  font-style: italic;
+}

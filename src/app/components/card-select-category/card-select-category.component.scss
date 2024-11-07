@@ -1,0 +1,40 @@
+.card-category {
+  position: relative;
+  border-radius: 10px;
+}
+
+.title-category {
+  color: white;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 75%;
+  width: 100%;
+  z-index: 10;
+}
+
+img {
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.card-category::after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 50px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  width: 150px;
+  border-radius: 0 0 10px 10px;
+  backdrop-filter: blur(3px);
+  filter: blur(4px);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+}

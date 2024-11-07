@@ -1,0 +1,8 @@
+<div class="row">
+  <ng-container *ngFor="let category of categories">
+    <div class="card-category col-6 mb-3" (click)="navigateTo(category.id)" (keydown)="navigateTo(category.id)">
+      <h3 class="title-category font-edu">{{ category.name }}</h3>
+      <img [src]="category.image" alt="{{ category.title }}" />
+    </div>
+  </ng-container>
+</div>

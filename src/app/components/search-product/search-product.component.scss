@@ -1,0 +1,17 @@
+::ng-deep {
+  .input-group {
+    color: #dabfa7;
+    input::placeholder {
+      color: #dabfa7;
+      opacity: 1; // Ensures the color is fully applied
+    }
+  }
+}
+
+.icon-search {
+  background: url("../../../assets/icons/search.svg") no-repeat center center;
+  width: 20px;
+  height: 20px;
+  filter: invert(79%) sepia(16%) saturate(743%) hue-rotate(314deg)
+    brightness(97%) contrast(85%);
+}

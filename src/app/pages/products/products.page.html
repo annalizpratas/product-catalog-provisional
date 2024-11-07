@@ -1,0 +1,80 @@
+<app-banner-promo [size]="'small'"></app-banner-promo>
+
+<div *ngIf="msgError" class="alert alert-danger mt-4 mb-4" role="alert">
+  {{msgError}}
+</div>
+
+<app-title [title]="'ENCONTRE SUA PRATA'"></app-title>
+
+<app-search-product
+  (searchProducName)="getProductListName($event)"
+></app-search-product>
+
+<div class="row mt-5">
+  <ng-container *ngFor="let product of productList; let index = index">
+    <div
+      class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4"
+      [ngClass]=" index % 2 === 0 ? 'remove-padding-right': 'remove-padding-left'"
+    >
+      <div class="card">
+        <ngb-carousel
+          *ngIf="product.images"
+          [showNavigationIndicators]="product.images.length > 1"
+          [showNavigationArrows]="product.images.length > 1"
+        >
+          <ng-template ngbSlide *ngFor="let image of product.images">
+            <div class="picsum-img-wrapper">
+              <ng-container *ngIf="product.is_promo">
+                <img
+                  class="img-promo"
+                  src="../../../assets/promo.png"
+                  alt="img-promo"
+                />
+
+                <img
+                  class="img-fluid"
+                  [src]="getImageUrl(image)"
+                  [alt]="product.name"
+                  (click)="openImageInFullScreen(image)"
+                />
+              </ng-container>
+
+              <img
+                class="card-img-top"
+                [src]="getImageUrl(image)"
+                (error)="this.src=getImageUrl('product-default.jpg')"
+                [alt]="product.name"
+              />
+            </div>
+          </ng-template>
+        </ngb-carousel>
+
+        <div class="card-body">
+          <p class="card-title m-0 fw-bolder">
+            <span> {{product.name}} </span>
+            <span class="card-text size m-0">{{product.size}}</span>
+          </p>
+          <p class="card-text description m-0">{{product.description}}</p>
+
+          <ng-container *ngIf="product.is_promo">
+            <p class="card-text m-0 mt-3 float-end">
+              <span class="price-original me-1"
+                >{{product.price| currency:'BRL'}}</span
+              >
+              <span class="price-promo"
+                >{{product.price_promo | currency:'BRL'}}</span
+              >
+            </p>
+          </ng-container>
+
+          <p
+            class="card-text price m-0 mt-3 float-end"
+            *ngIf="!product.is_promo"
+          >
+            {{product.price | currency:'BRL'}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

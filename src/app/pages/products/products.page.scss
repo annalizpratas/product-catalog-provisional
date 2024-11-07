@@ -1,0 +1,87 @@
+::ng-deep {
+  .card {
+    box-shadow: 5px 5px 10px 6px #0000003b;
+  }
+
+  .card-body {
+    position: relative;
+    top: -20px;
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .card-img-top {
+    border-radius: 10px;
+  }
+
+  .picsum-img-wrapper .card-img-top {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .carousel {
+    padding: 10px;
+    padding-bottom: 0;
+    top: -27px;
+  }
+
+  .carousel-inner {
+    border-radius: 10px;
+  }
+
+  .carousel-control-next {
+    margin-right: 1rem;
+  }
+
+  .carousel-control-prev {
+    margin-left: 1rem;
+  }
+}
+
+.img-promo {
+  width: 80px;
+  right: 3px;
+  position: absolute;
+  z-index: 10;
+}
+
+.card-title {
+  color: #826d54;
+  font-size: 12px;
+}
+
+.card-text.description {
+  color: #a3a3a3;
+  font-size: 12px;
+}
+
+.card-text.size {
+  color: #dabfa7;
+  font-size: 12px;
+}
+
+.card-text.price {
+  color: #c3a174;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.price-original {
+  color: #dabfa7;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.price-promo {
+  color: #ff9d24;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.remove-padding-right {
+  padding-right: 8px;
+}
+
+.remove-padding-left {
+  padding-left: 8px;
+}
