@@ -4,47 +4,63 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
 import { ResponseModel } from '../models/reponse.model';
 import { ProductModel } from '../models/product.model';
+import { products } from 'src/mocks/products';
+import { categories } from 'src/mocks/categories';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
-  
+
   // Product
-  getProduct(is_promo: boolean, id_product_category?: number): Observable<ResponseModel<ProductModel[]>> {
-    const url = id_product_category
-      ? `${this.url}/product-list/${id_product_category}`
-      : `${this.url}/product-list`;
+  getProduct(
+    is_promo: boolean,
+    id_product_category?: number
+  ): Observable<ResponseModel<ProductModel[]>> {
+    const filterNameProducts = products.filter((product) => {
+      return is_promo
+        ? product.price_promo != undefined &&
+            product.id_category == id_product_category
+        : product.id_category == id_product_category;
+    });
 
-    const params: any = {};
-    if (is_promo !== undefined) {
-      params.is_promo = is_promo;
-    }
-
-    return this.http.get<ResponseModel<ProductModel[]>>(`${url}`, { params });
+    return new Observable<ResponseModel<ProductModel[]>>((observer) => {
+      observer.next({ response: filterNameProducts, message: 'Success' });
+      observer.complete();
+    });
   }
 
-  getProductName(is_promo: boolean, name_product?: string): Observable<ResponseModel<ProductModel[]>> {
-    const url = name_product
-      ? `${this.url}/product-name-list/${name_product}`
-      : `${this.url}/product-list`;
+  getProductName(
+    is_promo: boolean,
+    name_product?: string
+  ): Observable<ResponseModel<ProductModel[]>> {
+    const filterNameProducts = products.filter((product) => {
+      return is_promo
+        ? product.price_promo != undefined &&
+            product.name
+              .toLocaleLowerCase()
+              .includes(name_product.toLocaleLowerCase())
+        : product.name
+            .toLocaleLowerCase()
+            .includes(name_product.toLocaleLowerCase());
+    });
 
-    const params: any = {};
-    if (is_promo !== undefined) {
-      params.is_promo = is_promo;
-    }
-
-    return this.http.get<ResponseModel<ProductModel[]>>(`${url}`, { params });
+    return new Observable<ResponseModel<ProductModel[]>>((observer) => {
+      observer.next({ response: filterNameProducts, message: 'Success' });
+      observer.complete();
+    });
   }
 
-  getProductStatus(): Observable<ResponseModel<{id: number, name: string}[]>> {
-    return this.http.get<ResponseModel<{id: number, name: string}[]>>(`${this.url}/product-status-list`);
-  }
-
-
-  getProductCategory(): Observable<ResponseModel<{id: number, name: string}[]>> {
-    return this.http.get<ResponseModel<{id: number, name: string}[]>>(`${this.url}/product-category-list`);
+  getProductCategory(): Observable<
+    ResponseModel<{ id: number; name: string }[]>
+  > {
+    return new Observable<ResponseModel<{ id: number; name: string }[]>>(
+      (observer) => {
+        observer.next({ response: categories, message: 'Success' });
+        observer.complete();
+      }
+    );
   }
 
   // IMAGES

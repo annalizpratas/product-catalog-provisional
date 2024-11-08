@@ -36,6 +36,7 @@
                   [src]="getImageUrl(image)"
                   [alt]="product.name"
                   (click)="openImageInFullScreen(image)"
+                  (keypress)="handleKeyPress($event)"
                 />
               </ng-container>
 
@@ -59,10 +60,10 @@
           <ng-container *ngIf="product.is_promo">
             <p class="card-text m-0 mt-3 float-end">
               <span class="price-original me-1"
-                >{{product.price| currency:'BRL'}}</span
+                >{{ parseProductPrices(product.price) | currency:'BRL'}}</span
               >
               <span class="price-promo"
-                >{{product.price_promo | currency:'BRL'}}</span
+                >{{ parseProductPrices(product.price_promo) | currency:'BRL'}}</span
               >
             </p>
           </ng-container>
@@ -71,7 +72,7 @@
             class="card-text price m-0 mt-3 float-end"
             *ngIf="!product.is_promo"
           >
-            {{product.price | currency:'BRL'}}
+            {{ parseProductPrices(product.price) | currency:'BRL'}}
           </p>
         </div>
       </div>

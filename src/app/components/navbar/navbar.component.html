@@ -34,7 +34,7 @@
         </li>
         <ng-container *ngFor="let menu of menuList">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/pratas', menu.id]" (click)="isCollapsed = true">{{ menu.name }}</a>
+            <a class="nav-link" [routerLink]="['/pratas', menu.id]" (click)="isCollapsed = true">{{ menu.name | uppercase }}</a>
           </li>
         </ng-container>
       </ul>

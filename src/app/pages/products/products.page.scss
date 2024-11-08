@@ -1,6 +1,7 @@
 ::ng-deep {
   .card {
     box-shadow: 5px 5px 10px 6px #0000003b;
+    height: 100%;
   }
 
   .card-body {
@@ -13,6 +14,8 @@
 
   .card-img-top {
     border-radius: 10px;
+    max-height: 150px !important;
+    object-fit: cover;
   }
 
   .picsum-img-wrapper .card-img-top {

@@ -20,7 +20,7 @@ export class ProductsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private loading: LoadingService,
-    private productsService: ProductService,
+    private productsService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class ProductsPage implements OnInit {
   }
 
   getImageUrl(nameImage: string): string {
-    return `${this.url}/uploads/${nameImage}`;
+    return `assets/images/products/${nameImage}`;
   }
 
   getProductListName(product_name: string): void {
@@ -46,7 +46,6 @@ export class ProductsPage implements OnInit {
     this.productsService.getProductName(false, product_name).subscribe(
       (data) => {
         this.productList = data.response;
-        console.log('this.productList', this.productList);
         this.msgError = '';
         this.loading.hide();
       },
@@ -60,7 +59,9 @@ export class ProductsPage implements OnInit {
     );
   }
 
-  
+  parseProductPrices(price: any): number {
+    return parseFloat(price);
+  }
 
   private getProductList(id_product_category: number): void {
     this.loading.show();
