@@ -1,1 +1,32 @@
-<p>image-fullscreen works!</p>
+<div
+  class="modal fade"
+  id="fullscreenImageModal"
+  tabindex="-1"
+  aria-labelledby="fullscreenImageModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="thumbnail-container text-center mt-3">
+          <div *ngFor="let imageUrl of imageUrls" class="thumbnail">
+            <img
+              [src]="getImageUrl(imageUrl)"
+              alt="Thumbnail"
+              class="img-thumbnail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

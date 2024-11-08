@@ -23,7 +23,7 @@
           [showNavigationArrows]="product.images.length > 1"
         >
           <ng-template ngbSlide *ngFor="let image of product.images">
-            <div class="picsum-img-wrapper">
+            <div class="picsum-img-wrapper" (click)="openImageModal(product.images)">
               <ng-container *ngIf="product.is_promo">
                 <img
                   class="img-promo"
@@ -35,10 +35,10 @@
                   class="img-fluid"
                   [src]="getImageUrl(image)"
                   [alt]="product.name"
-                  (click)="openImageInFullScreen(image)"
-                  (keypress)="handleKeyPress($event)"
                 />
               </ng-container>
+
+              <app-image-fullscreen></app-image-fullscreen>
 
               <img
                 class="card-img-top"
@@ -63,7 +63,8 @@
                 >{{ parseProductPrices(product.price) | currency:'BRL'}}</span
               >
               <span class="price-promo"
-                >{{ parseProductPrices(product.price_promo) | currency:'BRL'}}</span
+                >{{ parseProductPrices(product.price_promo) |
+                currency:'BRL'}}</span
               >
             </p>
           </ng-container>

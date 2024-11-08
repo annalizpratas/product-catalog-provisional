@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ImageFullscreenComponent } from 'src/app/components/image-fullscreen/image-fullscreen.component';
 import { LoadingService } from 'src/app/shared/services/loading.service';
@@ -10,18 +10,31 @@ import { environment } from 'src/environment';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage implements OnInit, AfterViewInit {
+  @ViewChild(ImageFullscreenComponent)
+  fullscreenImageModal!: ImageFullscreenComponent;
+
   url = environment.apiUrl;
 
   msgError = '';
 
   productList = [];
 
+  isModalOpened = false;
+
   constructor(
     private route: ActivatedRoute,
     private loading: LoadingService,
     private productsService: ProductService
   ) {}
+
+  ngAfterViewInit(): void {
+    this.fullscreenImageModal.onClose.subscribe(() => {
+      setTimeout(() => {
+        this.isModalOpened = false;
+      }, 1000);
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -57,6 +70,13 @@ export class ProductsPage implements OnInit {
         this.loading.hide();
       }
     );
+  }
+
+  openImageModal(imageUrl: string[]) {
+    if (!this.isModalOpened) {
+      this.isModalOpened = true;
+      this.fullscreenImageModal.openModal(imageUrl);
+    }
   }
 
   parseProductPrices(price: any): number {
