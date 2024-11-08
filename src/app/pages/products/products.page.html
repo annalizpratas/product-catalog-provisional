@@ -32,20 +32,13 @@
                 />
 
                 <img
-                  class="img-fluid"
+                  class="img-product img-fluid"
                   [src]="getImageUrl(image)"
                   [alt]="product.name"
                 />
               </ng-container>
 
               <app-image-fullscreen></app-image-fullscreen>
-
-              <img
-                class="card-img-top"
-                [src]="getImageUrl(image)"
-                (error)="this.src=getImageUrl('product-default.jpg')"
-                [alt]="product.name"
-              />
             </div>
           </ng-template>
         </ngb-carousel>

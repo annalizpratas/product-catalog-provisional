@@ -14,8 +14,13 @@
 
   .card-img-top {
     border-radius: 10px;
+  }
+
+  .img-product {
+    width: 100%;
     max-height: 150px !important;
     object-fit: cover;
+    position: relative;
   }
 
   .picsum-img-wrapper .card-img-top {

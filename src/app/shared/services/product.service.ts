@@ -20,7 +20,7 @@ export class ProductService {
   ): Observable<ResponseModel<ProductModel[]>> {
     const filterNameProducts = products.filter((product) => {
       return is_promo
-        ? product.price_promo != undefined &&
+        ? product.is_promo &&
             product.id_category == id_product_category
         : product.id_category == id_product_category;
     });
@@ -37,7 +37,7 @@ export class ProductService {
   ): Observable<ResponseModel<ProductModel[]>> {
     const filterNameProducts = products.filter((product) => {
       return is_promo
-        ? product.price_promo != undefined &&
+        ? product.is_promo &&
             product.name
               .toLocaleLowerCase()
               .includes(name_product.toLocaleLowerCase())
